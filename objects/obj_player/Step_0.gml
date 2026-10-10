@@ -12,6 +12,15 @@ switch(state){
 			vspd = 0;
 			vspd = jump_height;
 		}
+		
+		if(!_ground && vspd > 0){
+			var _c = instance_place(x,y+1,obj_enemy);
+			if(_c){
+				vspd = 0;
+				vspd = jump_height;
+				instance_destroy(_c.id);
+			}
+		}
 	break;
 	
 }
