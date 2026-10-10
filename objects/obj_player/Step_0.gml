@@ -1,3 +1,4 @@
+if(keyboard_check_pressed(ord("R"))) room_restart();
 switch(state){
 	case "move":
 		var _right	= keyboard_check(ord("D"));	
@@ -24,6 +25,7 @@ switch(state){
 		
 		if(instance_place(x+hspd,y,obj_enemy)){
 			room_restart();
+			damage();
 		}
 	break;
 	
