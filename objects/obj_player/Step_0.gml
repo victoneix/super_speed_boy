@@ -23,6 +23,18 @@ switch(state){
 			}
 		}
 		
+		if(!_ground && vspd > 0){
+			var _b = instance_place(x,y+1,obj_boss);
+			if(_b){
+				vspd = 0;
+				vspd = jump_height;
+				with(obj_boss){
+					state = "stopped";
+					damage();
+				}
+			}
+		}
+		
 		if(instance_place(x+hspd,y,obj_enemy)){
 			state = "death";
 			damage();
