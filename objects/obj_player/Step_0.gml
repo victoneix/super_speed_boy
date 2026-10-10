@@ -21,6 +21,10 @@ switch(state){
 				instance_destroy(_c.id);
 			}
 		}
+		
+		if(instance_place(x+hspd,y,obj_enemy)){
+			room_restart();
+		}
 	break;
 	
 }
