@@ -1,7 +1,7 @@
 switch(state){
 	case "move":
 		hspd = move_dir * move_spd;
-		if(place_meeting(x+1,y,obj_collision)){
+		if(place_meeting(x+hspd,y,obj_collision)){
 			move_dir *= -1;
 		}
 		
