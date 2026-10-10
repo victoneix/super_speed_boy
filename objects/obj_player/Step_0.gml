@@ -10,7 +10,7 @@ switch(state){
 		
 		if(_ground && _jump){
 			vspd = 0;
-			vspd = -7;
+			vspd = jump_height;
 		}
 	break;
 	

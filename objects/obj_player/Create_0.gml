@@ -1,8 +1,6 @@
-spd = 2;
-hspd = 0;
-vspd = 0;
-grav = 0.4;
+event_inherited();
 state = "move";
 
+jump_height = -7;
 vspd_min = -7;
 vspd_max = 7;
