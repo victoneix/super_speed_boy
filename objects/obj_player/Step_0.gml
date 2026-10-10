@@ -24,8 +24,17 @@ switch(state){
 		}
 		
 		if(instance_place(x+hspd,y,obj_enemy)){
-			room_restart();
+			state = "death";
 			damage();
+		}
+	break;
+	
+	case "death":
+		hspd = 0;
+		vspd = 0;
+		respawn--;
+		if(respawn < 1){
+			room_restart()
 		}
 	break;
 	
