@@ -17,4 +17,6 @@ global.timer += ":";
 if(global.t_mil > 9){global.timer += ""+string(global.t_mil)}
 if(global.t_mil < 10){global.timer += "0"+string(global.t_mil)}
 
-draw_text_ext_transformed(160 div 2-8, 1, string(global.timer),0,999,0.5,0.5,0);
+draw_set_halign(1);
+draw_text_ext_transformed(160 div 2, 1, string(global.timer),0,999,0.5,0.5,0);
+draw_set_halign(0);

@@ -31,6 +31,7 @@ switch(state){
 				with(obj_boss){
 					state = "stopped";
 					damage();
+					move_spd++;
 				}
 			}
 		}
