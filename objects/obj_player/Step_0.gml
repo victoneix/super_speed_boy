@@ -51,3 +51,19 @@ switch(state){
 	break;
 	
 }
+
+global.t_mil++;
+
+if(global.t_mil = 59){
+	global.t_sec++;
+	global.t_mil = 0;
+}
+
+if(global.t_sec = 59){
+	global.t_sec = 0;
+	global.t_min++;
+}
+
+if(global.t_min = 59){
+	global.t_min = 0;
+}

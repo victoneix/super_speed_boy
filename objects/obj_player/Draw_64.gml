@@ -6,3 +6,15 @@ repeat(global.life){
 
 draw_text_ext_transformed(160-16,1,global.cons,0,999,0.5,0.5,0);
 draw_sprite(spr_con,0,160-11,2);
+
+global.timer = "";
+if(global.t_min > 9){global.timer += ""+string(global.t_min)}
+if(global.t_min < 10){global.timer += "0"+string(global.t_min)}
+global.timer += ":";
+if(global.t_sec > 9){global.timer += ""+string(global.t_sec)}
+if(global.t_sec < 10){global.timer += "0"+string(global.t_sec)}
+global.timer += ":";
+if(global.t_mil > 9){global.timer += ""+string(global.t_mil)}
+if(global.t_mil < 10){global.timer += "0"+string(global.t_mil)}
+
+draw_text_ext_transformed(160 div 2-8, 1, string(global.timer),0,999,0.5,0.5,0);
