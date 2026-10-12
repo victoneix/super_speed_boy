@@ -1,4 +1,5 @@
 if(keyboard_check_pressed(ord("R"))) room_restart();
+show_debug_message(state);
 switch(state){
 	case "move":
 		var _right	= keyboard_check(ord("D"));	
@@ -25,7 +26,7 @@ switch(state){
 		
 		if(!_ground && vspd > 0){
 			var _b = instance_place(x,y+1,obj_boss);
-			if(_b){
+			if(_b && _b.state == "move"){
 				vspd = 0;
 				vspd = jump_height;
 				with(obj_boss){
@@ -40,6 +41,11 @@ switch(state){
 			state = "death";
 			damage();
 		}
+		
+		if(instance_place(x+hspd,y,obj_spiky)){
+			state = "death";
+			damage();
+		}
 	break;
 	
 	case "death":
@@ -47,24 +53,23 @@ switch(state){
 		vspd = 0;
 		respawn--;
 		if(respawn < 1){
-			room_restart()
+			room_restart();
 		}
 	break;
-	
 }
 
 global.t_mil++;
 
-if(global.t_mil = 59){
+if(global.t_mil >= 59){
 	global.t_sec++;
 	global.t_mil = 0;
 }
 
-if(global.t_sec = 59){
+if(global.t_sec >= 59){
 	global.t_sec = 0;
 	global.t_min++;
 }
 
-if(global.t_min = 59){
+if(global.t_min >= 59){
 	global.t_min = 0;
 }

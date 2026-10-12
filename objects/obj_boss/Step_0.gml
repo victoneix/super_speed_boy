@@ -1,4 +1,3 @@
-show_debug_message(state);
 switch(state){
 	case "move":
 		hspd = move_dir * move_spd;
