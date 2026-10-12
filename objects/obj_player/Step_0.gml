@@ -1,10 +1,13 @@
 if(keyboard_check_pressed(ord("R"))) room_restart();
 show_debug_message(state);
+var _right	= keyboard_check(ord("D"));	
+var _left	= keyboard_check(ord("A"));
+var _up		= keyboard_check(ord("W"));
+var _down	= keyboard_check(ord("S"));
+var _jump	= keyboard_check(vk_space);
+
 switch(state){
 	case "move":
-		var _right	= keyboard_check(ord("D"));	
-		var _left	= keyboard_check(ord("A"));	
-		var _jump	= keyboard_check(vk_space);
 		var _ground = place_meeting(x,y+1,obj_collision);
 		hspd = (_right - _left)*spd;
 		vspd += grav;
@@ -37,6 +40,10 @@ switch(state){
 			}
 		}
 		
+		if(instance_place(x,y,obj_grids) && _up){
+			state = "scaling";
+		}
+		
 		if(instance_place(x+hspd,y,obj_enemy)){
 			state = "death";
 			damage();
@@ -45,6 +52,18 @@ switch(state){
 		if(instance_place(x+hspd,y,obj_spiky)){
 			state = "death";
 			damage();
+		}
+	break;
+	
+	case "scaling":
+		hspd = (_right - _left)*spd;
+		vspd = (_down - _up)*spd;
+		if(_jump){ 
+			state = "move";
+			vspd = jump_height;
+		}
+		if(!instance_place(x,y,obj_grids)){ 
+			state = "move";
 		}
 	break;
 	
