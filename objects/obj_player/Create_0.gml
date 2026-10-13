@@ -8,6 +8,10 @@ vspd_max = 7;
 respawn_max = 60;
 respawn = respawn_max;
 
+bubbles = 4;
+breathing_max = 480;
+breathing = breathing_max;
+
 damage = function(){
 	respawn = respawn_max;
 	if(global.life > 1){

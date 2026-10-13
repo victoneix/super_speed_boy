@@ -40,10 +40,6 @@ switch(state){
 			}
 		}
 		
-		if(instance_place(x,y,obj_grids) && _up){
-			state = "scaling";
-		}
-		
 		if(instance_place(x+hspd,y,obj_enemy)){
 			state = "death";
 			damage();
@@ -52,6 +48,14 @@ switch(state){
 		if(instance_place(x+hspd,y,obj_spiky)){
 			state = "death";
 			damage();
+		}
+		
+		if(instance_place(x,y,obj_grids) && _up){
+			state = "scaling";
+		}
+		
+		if(instance_place(x,y,obj_water)){
+			state = "swim";
 		}
 	break;
 	
@@ -67,6 +71,26 @@ switch(state){
 		}
 	break;
 	
+	case "swim":
+		hspd = (_right - _left)*spd;
+		vspd += 0.1;
+		vspd = clamp(vspd,-2,2);
+		breathing--;
+		if(bubbles > 0 && breathing <= 0){
+			bubbles--;
+			breathing = breathing_max;
+		}
+		if(bubbles <= 0) state = "death";
+		if(_jump){
+			vspd = -2;
+		}
+		if(!instance_place(x,y,obj_water)){ 
+			state = "move";
+			bubbles = 4;
+			breathing = breathing_max;
+		}
+	break;
+	
 	case "death":
 		hspd = 0;
 		vspd = 0;
@@ -79,16 +103,16 @@ switch(state){
 
 global.t_mil++;
 
-if(global.t_mil >= 59){
+if(global.t_mil >= 60){
 	global.t_sec++;
 	global.t_mil = 0;
 }
 
-if(global.t_sec >= 59){
+if(global.t_sec >= 60){
 	global.t_sec = 0;
 	global.t_min++;
 }
 
-if(global.t_min >= 59){
+if(global.t_min >= 60){
 	global.t_min = 0;
 }

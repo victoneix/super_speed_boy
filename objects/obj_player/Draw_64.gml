@@ -4,8 +4,15 @@ repeat(global.life){
 	_margin += 11;
 }
 
-draw_text_ext_transformed(160-16,1,global.cons,0,999,0.5,0.5,0);
-draw_sprite(spr_con,0,160-11,2);
+if(state == "swim"){
+	var _margin_b = 0;
+	draw_set_halign(2);
+	repeat(bubbles){
+		draw_sprite(spr_bubbles,0,116+_margin_b,2);
+		_margin_b += 11;
+	}
+	draw_set_halign(0);
+}
 
 global.timer = "";
 if(global.t_min > 9){global.timer += ""+string(global.t_min)}
